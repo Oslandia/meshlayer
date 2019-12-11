@@ -131,7 +131,7 @@ class MeshLayerPropertyDialog(QDialog):
         """
         try :
             max = float(self.maxValue.text())
-            self.layer.colorLegend().setMaxValue(min)
+            self.layer.colorLegend().setMaxValue(max)
         except ValueError:
             pass
 
