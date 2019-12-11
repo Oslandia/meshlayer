@@ -44,6 +44,8 @@ class MeshLayerPropertyDialog(QDialog):
         self.menu = QMenu(self.colorButton)
         self.colorButton.setMenu(self.menu)
         for name, fil in ColorLegend.availableRamps().items():
+            if fil[-14:] != 'continuous.svg':
+                continue
             img = QImage(fil).scaled(QSize(30,30))
             action = QAction(QIcon(QPixmap.fromImage(img)), name, self.colorButton)
             def emitter(f):
@@ -260,8 +262,10 @@ class MeshLayerPropertyDialog(QDialog):
         """
         if idx==0:
             self.layer.colorLegend().toggleGraduation(False)
+            self.colorButton.setIcon(QIcon(self.layer.colorLegend().colorRamp()))
         else:
             self.layer.colorLegend().toggleGraduation(True)
+            self.classColorButton.setIcon(QIcon(self.layer.colorLegend().colorRamp()))
 
 
 
